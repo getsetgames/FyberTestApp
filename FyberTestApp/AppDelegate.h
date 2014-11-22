@@ -10,12 +10,16 @@
 
 @class RootViewController;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
+@interface AppDelegate : NSObject <UIApplicationDelegate, UINavigationControllerDelegate, CCProjectionProtocol> {
 	UIWindow			*window;
 	RootViewController	*viewController;
+    UINavigationController *navigationController;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, readonly) RootViewController *viewController;
+@property (readonly) UINavigationController *navigationController;
+
+-(void)updateProjection;
 
 @end

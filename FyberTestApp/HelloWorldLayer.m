@@ -11,6 +11,7 @@
 #import "HelloWorldLayer.h"
 #import "AppDelegate.h"
 #import "GSGAdManager.h"
+#import "GSGCocos2d.h"
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -40,7 +41,7 @@
    
 		// create and initialize a Label
 		//CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
-        CCMenuItemSprite *b = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"Icon-72.png"]
+        b = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"Icon-72.png"]
                                                       selectedSprite:[CCSprite spriteWithFile:@"Icon-72.png"]
                                                                block:^(id sender) {
                                                                    
@@ -103,9 +104,10 @@
         
         AppDelegate *app = [UIApplication sharedApplication].delegate;
         
-        UIViewController *vc = (UIViewController *)app.viewController;
+        //UIViewController *vc = (UIViewController *)app.viewController;
         
-        adLayer = [[AdButtonLayer alloc] initWithAdConfig:adConfig viewController:vc];
+        adLayer = [[[AdButtonLayer alloc] initWithAdConfig:adConfig viewController:[GSGCocos2d sharedInstance].viewController] autorelease];
+        adLayer.button = b;
         [self addChild:adLayer];
     }
 
